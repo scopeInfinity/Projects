@@ -1,0 +1,15 @@
+#!/usr/bin/perl
+
+print "Enter Sentence : ";
+$dict = "/usr/share/dict/words";
+open(DICT,"$dict");
+$line = <>;
+@words = split(/\ /,$line,-1);
+print "Incorrect Spellings - \n";
+foreach $word ( @words ) {
+	if (!grep{ /$word/i } <DICT>) {
+		print "$word\n";
+	}
+	seek(DICT,0,0); #Seek to start of File
+}
+close(DICT);

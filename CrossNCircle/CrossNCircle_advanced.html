@@ -1,0 +1,227 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<title>My JS game,  Updated</title>
+
+<style type="text/css">
+<!--
+.style1 {
+	font-family: "Courier New", Courier, monospace;
+	font-weight: bold;
+	font-size: 18px;
+}
+-->
+</style>
+</head>
+
+<body onload="init()">
+<p>
+  <script>
+  
+var turn=1,running=1,opp=1;
+var ar=new Array(0,0,0,0,0,0,0,0,0);
+function init()
+{
+	if (document.getElementById('r1').checked)
+		opp=1;
+	else if(document.getElementById('r2').checked)
+		opp=2;
+	else if(document.getElementById('r3').checked)
+		opp=3;
+}
+
+function change2(x)
+{
+	if(running==1)
+	{
+		document.getElementById('msg2').innerHTML="";
+		if(ar[x]==0) 
+		{
+			ar[x]=turn;turn=(turn==1)?2:1;
+			if(turn==2)
+				document.getElementById('msg').innerHTML="Place Circle";
+			else
+			 document.getElementById('msg').innerHTML="Place Cross";
+		}
+		else 
+			document.getElementById('msg2').innerHTML="Place already filled!";
+	if(ar[x]==1)
+		document.getElementById('b'+x).value='X';
+	else if(ar[x]==2)
+		document.getElementById('b'+x).value='O';
+	check();
+	}
+}
+
+function change(x)
+{
+	if(opp==1 || (opp==2 && turn==1) || (opp==3 && turn==2))
+		change2(x);
+}
+
+function check()
+{
+	var flag=0;
+	for(var i=0;i<3;i++)
+	{
+		if(ar[i*3]==ar[i*3+1] && ar[i*3+2]==ar[i*3+1] && ar[i*3]!=0)
+			flag=ar[i*3];
+		else if(ar[i]==ar[i+3] && ar[i+6]==ar[i+3] && ar[i]!=0)
+			flag=ar[i];
+	}
+
+	if(ar[0]==ar[4]&& ar[4]==ar[8] && ar[0]!=0)
+		flag=ar[0];
+	if(ar[2]==ar[4]&& ar[4]==ar[6] && ar[4]!=0)
+		flag=ar[4];
+
+	if(	flag==1)
+		document.getElementById('msg2').innerHTML="Cross Wins!!";
+	else if(flag==2)
+		document.getElementById('msg2').innerHTML="Circle Wins!!";
+	if(!(flag==0))
+		running=0;
+}
+
+function resetfunc()
+{
+	turn=1;running=1;
+	for(var i=0;i<9;i++)
+		{
+		ar[i]=0;
+		document.getElementById('b'+i).value='  ';
+		}
+  document.getElementById('msg').innerHTML="Place Cross";
+  document.getElementById('msg2').innerHTML="";
+}
+
+function func_type(x)
+{
+	if(x==1)
+		opp=1;
+	else if(x==2)
+		opp=2;
+	else if(x==3)
+		opp=3; 
+}
+
+function step()
+{
+	var flag=0;
+	for(var i=0;i<9;i++)
+		if(ar[i]==0)
+			flag=1;
+		if(flag==0)
+			{
+				running=0;
+				document.getElementById('msg2').innerHTML="Match Draw";
+			}
+		if(running==1)
+			AI();
+}
+
+function AI()
+{
+	if((opp==2 && turn==2)||(opp==3 && turn==1))
+	{
+	var flag2=0;
+	//win
+	for(var z=0;z<9;z++)
+	{
+		if(ar[z]!=0)
+			continue;
+		ar[z]=turn;
+		var flag=0;
+		for(var i=0;i<3;i++)
+		{
+			if(ar[i*3]==ar[i*3+1] && ar[i*3+2]==ar[i*3+1] && ar[i*3]!=0)
+			flag=1;
+			else if(ar[i]==ar[i+3] && ar[i+6]==ar[i+3] && ar[i]!=0)
+			flag=1;
+		}
+
+		if(ar[0]==ar[4]&& ar[4]==ar[8] && ar[0]!=0)
+			flag=1;
+		if(ar[2]==ar[4]&& ar[4]==ar[6] && ar[4]!=0)
+			flag=1;
+
+		ar[z]=0;
+		if(flag!=0)
+			{
+				flag2=z+1;
+				break;
+			}
+	}
+
+
+	//do not loose
+	if(flag2==0)
+	for(var z=0;z<9;z++)
+	{
+	if(ar[z]!=0)
+		continue;
+	if(turn==1)
+		ar[z]=2;
+	else
+		ar[z]=1;
+	
+	var flag=0;
+	for(var i=0;i<3;i++)
+	{
+		if(ar[i*3]==ar[i*3+1] && ar[i*3+2]==ar[i*3+1] && ar[i*3]!=0)
+			flag=1;
+		else if(ar[i]==ar[i+3] && ar[i+6]==ar[i+3] && ar[i]!=0)
+			flag=1;
+	}
+
+	if(ar[0]==ar[4]&& ar[4]==ar[8] && ar[0]!=0)
+		flag=1;
+	if(ar[2]==ar[4]&& ar[4]==ar[6] && ar[4]!=0)
+		flag=1;
+
+	ar[z]=0;
+	if(flag!=0)
+		{
+			flag2=z+1;
+			break;
+		}
+	}
+
+	if(flag2==0)
+	{
+		var temp=(Math.floor(Math.random()*9));
+		while(ar[temp]!=0)
+			temp=(Math.floor(Math.random()*9));
+		flag2=temp+1;
+	}
+	change2(flag2-1);
+	}
+}
+
+window.setInterval(function(){step()},500);
+</script> 
+<span class="style1">Cross n Circle</span></p>
+<p>	
+  <input type="submit" id='b0' value="  " onclick="change(0)"/>
+  <input type="submit" id='b1' value="  " onclick="change(1)"/>
+  <input type="submit" id='b2' value="  " onclick="change(2)"/>
+  <input name="radiobutton" type="radio" value="radiobutton" checked="checked" id='r1' onclick="func_type(1)" />
+  Human vs Human  <br />
+  <input type="submit" id='b3' value="  " onclick="change(3)"/>
+  <input type="submit" id='b4' value="  " onclick="change(4)"/>
+  <input type="submit" id='b5' value="  " onclick="change(5)"/>
+  <input name="radiobutton" type="radio" value="radiobutton" id='r2' onclick="func_type(2)"/>
+  Human vs AI(circle)<br />
+  <input type="submit" id='b6' value="  " onclick="change(6)"/>
+  <input type="submit" id='b7' value="  " onclick="change(7)"/>
+  <input type="submit" id='b8' value="  " onclick="change(8)"/>
+  <input name="radiobutton" type="radio" value="radiobutton" id='r3' onclick="func_type(3)" />
+Human vs AI(cross)</p>
+<p id='msg'>Place Cross</p>
+<p id='msg2'></p>
+<input type="submit" id='reset' value="RESET" onclick="resetfunc()"/>
+
+<p> JS game Updated by scopeInfinity</p>
+</body>
+</html>

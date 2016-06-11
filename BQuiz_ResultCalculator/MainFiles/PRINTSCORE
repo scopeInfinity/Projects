@@ -1,0 +1,3 @@
+#!/bin/bash
+bash scoreall >> $1;
+cat $1;

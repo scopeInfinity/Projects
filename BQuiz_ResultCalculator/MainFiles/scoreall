@@ -1,0 +1,4 @@
+#!/bin/bash
+for f in *.html;do
+./score "$f";
+done;

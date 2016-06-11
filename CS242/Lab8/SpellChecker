@@ -1,0 +1,125 @@
+#!/usr/bin/perl
+use List::Util qw(min);
+
+$noMismatch = 1;
+
+sub distance {
+	$word1 = @_[0];
+	$word2 = @_[1];
+	
+	my @DP;
+	
+	for (my $i = 0; $i <= length($word1); $i++) {
+		$DP[0][$i] = $i;
+	}
+	for (my $j = 0; $j <= length($word2); $j++) {
+		$DP[$j][0] = $j;
+	}
+	
+	for (my $i = 1; $i <= length($word1); $i++) {
+		for (my $j = 1; $j <= length($word2); $j++) {
+			my $cost = 0;
+			if (substr($word1,$i-1,1) ne substr($word2,$j-1,1)) {
+				$cost = 1;
+			}
+
+			$DP[$j][$i] = min($DP[$j-1][$i] +1, $DP[$j][$i-1] +1 , $DP[$j-1][$i-1] + $cost);			
+			#print $i . " " .$j . " " .$DP[$j][$i] . "\n";
+			
+		}
+	}
+	
+	return $DP[length($word2)][length($word1)];
+
+
+}
+sub checkWord {
+	my $word = @_[0];
+	my $DICT = @_[1];
+
+	chomp($word);
+	my $isFound = 0;
+
+	my $minDistance = 1000;
+	my @bestlist = ();
+	
+
+	my $wordLength = length($word);
+
+	my $bestMatches = "";
+
+	while(<DICT>) {
+
+			#Using String length as a simple hash, for fast comparision
+			if(abs(length($_)-1-$wordLength) <= $minDistance) {
+				$currentWord = lc($_);
+				chomp($currentWord);
+				$dist = distance($currentWord, $word);
+				if ($dist < $minDistance) {
+					@bestlist = ();
+					$minDistance = $dist;	
+				}
+				if ($dist == $minDistance) {
+					push(@bestlist, $currentWord);
+
+					#If word match is Found!!
+					if($minDistance==0) {
+						break;
+					}	
+				}
+			}
+	}
+	if($minDistance>0) {
+		$bestMatches = "$word : @bestlist\n";
+		$noMismatch = 0;
+	}
+	seek(DICT,0,0); #Seek to start of File
+	return $bestMatches;
+}
+sub main {
+	my $dict = "/usr/share/dict/words";
+	open(DICT,"$dict") or die "Can't Open Dictionary!";
+	
+	print "Enter Filename : ";
+	$filename = <>;
+	open(INPUTFILE,"$filename") or die "Can't Open File!";
+
+	print "Misspelled Word \n==================\n";
+
+	my %suggestionMap;
+	while (<INPUTFILE>) {
+		
+		my $line =$_;
+		$line =~ s/[[:punct:]]/ /g;
+
+		my @words = split(/\ /,$line,-1);
+
+		foreach my $word ( @words ) {
+		
+
+			if(length($word)>1) {
+				$word = lc($word);
+				if($suggestionMap{$word}) {
+					#Already Encoutered
+					print "$suggestionMap{$word}";
+				} else {
+					#New Word
+					my $bestMatches = checkWord($word, DICT);
+					$suggestionMap{$word} = $bestMatches;
+					print "$bestMatches";
+				}
+			}
+	
+
+		}
+
+	}
+
+	close(DICT);
+
+	if($noMismatch) {
+		print "No Spelling Mistake Found!!\n";
+	}
+}
+
+main();

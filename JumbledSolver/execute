@@ -1,0 +1,3 @@
+g++ jumbled.cpp
+./a.out $1 < dict.txt
+ 

@@ -1,0 +1,10 @@
+while read line;
+do
+	
+	IFS=',' read -r -a array <<< $(echo "$line" | tr '[:upper:]' '[:lower:]')
+	echo $array;
+#	if [[ "${array[1]}"  tr == *"$1"* ]]
+#	then
+#		echo $line;
+#	fi
+done < phonebook.txt

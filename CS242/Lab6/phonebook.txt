@@ -1,0 +1,29 @@
+1,Pushpak Battcharyya,Professor,8003,pb,409
+2,Abyayananda Maiti,Assistant Professor,8130,abyaym,414
+3,Arijit Mondal,Assistant Professor,8161,arijit,408
+4,Ashok Singh Sairam,Associate Professor,8035,ashok,412
+5,Asif Ekbal,Assistant Professor,8090,asif,410
+6,Joydeep Chandra,Assistant Professor,8129,joydeep,411
+7,Rajiv Misra,Associate Professor,8034,rajivm,413
+8,Raju Halder,Assistant Professor,8009,halder,406
+9,Samrat Mondal,Assistant Professor,8163,samrat,405
+10,Somanath tripathy,Associate Professor,8036,som,407
+11,Sriparna Saha,Assistant Professor,8128,sriparna,404
+12,Jimson Mathew,Associate Professor,8347,jimson,402
+13,Suman Kumar Maji,Assistant Professor,8344,smaji,403
+14,Ashutosh Sinha,Scientific Officer,8097,aksinha,513
+15,Abhishekh Dikshit,Junior Technical Superintendent,8162,adixit,427
+16,Shailendra Kumar Verma,Junior Technical Superintendent,8333,skverma,427
+17,Faculty Room-1,Faculty Room-1,8345,cse_head,401
+18,Software Lab-2,Lab,8348,xxxx,417
+19,Conference Room,Room,8349,xxxx,418
+20,Meeting Room,Room,8350,xxxx,419
+21,HOD Room,Room,8329,xxxx,420
+22,MTP-1,Lab,8331,xxxx,422
+23,Phd Lab-1,Lab,8334,xxxx,424
+24,Department Library,Library,8335,xxxx,425
+25,Server Room,Room,8336,xxxx,426
+26,Department Office,Office,8337,xxxx,427
+27,Elsevier COE for NLP-1,Lab,8338,xxxx,510
+28,Elsevier COE for NLP-2,Lab,8339,xxxx,510
+

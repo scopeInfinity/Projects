@@ -1,0 +1,62 @@
+For ./q1
+=========
+#Input
+
+this is colection of misspeled words
+
+
+#Output
+
+Enter Sentence : this is colection of misspeled words
+Incorrect Spellings - 
+colection
+misspeled
+
+
+For ./q2a
+======================================================
+	time echo "Ths is tha bst dy of my life" | ./q2a
+======================================================
+#Input
+
+Ths is tha bst dy of my life
+
+
+#Output
+
+Misspelled World 
+ths : t's th ohs the tho thy ts
+tha : twa ta th tia aha ha tea the tho thy
+bst : best st bat bet bit but
+dy : d di dr ty y ay by d db do my y
+
+
+#Time
+real	0m31.043s
+user	0m31.028s
+sys		0m0.000s
+
+For ./q2b
+======================================================
+	time echo "Ths is tha bst dy of my life" | ./q2b 
+======================================================
+#Input
+
+Ths is tha bst dy of my life
+
+
+#Output
+
+Misspelled World 
+ths : t's th ohs the tho thy ts
+tha : twa ta th tia aha ha tea the tho thy
+bst : best st bat bet bit but
+dy : d di dr ty y ay by d db do my y
+
+
+#Time
+real	0m0.926s
+user	0m0.916s
+sys		0m0.008s
+
+
