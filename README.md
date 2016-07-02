@@ -24,6 +24,9 @@
 *  __GI Text Editor__
    Linux Terminal Based TextEditor
 
+*  __Natural Sort__
+   Fully Documented C++ Header File for performing Natural Sort
+
 *  __mShooter Game__
    Java based Ping Pong game, with multiplayer usage over IP
 
