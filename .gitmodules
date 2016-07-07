@@ -1,0 +1,3 @@
+[submodule "iTalk"]
+	path = iTalk
+	url = https://github.com/scopeInfinity/iTalk
