@@ -1,5 +1,15 @@
 ## Projects
 
+* [__DivvyHost__](https://github.com/scopeInfinity/DivvyHost)
+   _Decentralized Hosting : Fully P2P Hosting_
+
+   The Project aims for decentralized Hosting instead of a normal static IP or nameserver based Web Hosting.
+
+   Any User can use DivvyHost to upload his HTML website and only he can modify it later on.
+   
+   Divvy Client Spreaded Over Intranet having a intranet IP, finds other DivvyClient shares website content which it contains with other,  leading to spread of latest data all over intranet. Those HTML website uploaded from any user availabe to everyone even if few of client is down/off/terminated.
+   
+   
 *  __REAC (RemoteAccess)__ 
    A software meant for accessing your laptop with limited permission(as specified) by another user with a given password over Intranet.
 
