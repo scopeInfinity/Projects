@@ -18,6 +18,9 @@
 *  __BooleanSimplifier__
     Implementation of Simplification of Boolean Application with QMap
 
+*  __Tic Tac Toe (Haskell)__
+    Simple Tic Tac Toe in Haskell
+
 *  __Merge Sort ASM__
    Implementation of Merge Sort in MIPS Assembly
 
