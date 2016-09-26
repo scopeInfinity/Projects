@@ -22,6 +22,9 @@
 
    It focuses on user privacy that, admin __must not__ be able to interpret any chat content even if he has collection of all kind of data with him.
 
+*  __Data transfer Optimization over network for two node Join using BloomFilter(JAVA)__
+   Java Implementation for minimization of data transfer over network for two node join using bloom filter.
+
 *  __ChatBox__
    GUI based Realtime-Chat using Sockets
 

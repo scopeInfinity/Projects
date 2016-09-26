@@ -1,0 +1,6 @@
+mkdir Master
+mkdir Client
+cp BloomFilterImplementation.jar Client/
+cp phone.txt Client/
+cp BloomFilterImplementation.jar Master/
+cp zip.txt Master/
