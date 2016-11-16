@@ -22,6 +22,9 @@
 
    It focuses on user privacy that, admin __must not__ be able to interpret any chat content even if he has collection of all kind of data with him.
 
+*  __MemoryManager__
+   Simulating use of Stack and Heap memory for basic operation of function calling.
+
 *  __Data transfer Optimization over network for two node Join using BloomFilter(JAVA)__
    Java Implementation for minimization of data transfer over network for two node join using bloom filter.
 
