@@ -12,7 +12,6 @@ public class MemoryManagerTest {
     }
     
     public void test() {
-       
         System.out.println("Starting Memory Manager Testing");
         System.out.println("===============================");
         System.out.println("\nSum Call 10 and 20");
@@ -24,9 +23,12 @@ public class MemoryManagerTest {
         String data = "Hello";
         System.out.println("Original Sting : "+data);
         int datap = Utils.pushStringToHeap(data);
+        
         int length = (int) new StringReverse(new Object[]{datap}).getResult();
+        
         String newdata = Utils.getStringFromHeap(datap);
         System.out.println("Reverse["+length+"] : "+newdata);
+        mmanager.free(datap);
         
         
         System.out.println("\nSum Pointer Call 10 and 25");
@@ -36,24 +38,41 @@ public class MemoryManagerTest {
         mmanager.setValue(num1, 10);
         mmanager.setValue(num2, 25);
         
+       
+        
         new SumFunctionPointers(new Object[]{num1,num2,ret});
         int output2 = MemoryManager.dereference(ret);
         System.out.println("New Sum is : "+(output2));
         
-        mmanager.free(datap);
-        
-        mmanager.printMemory();
         
         mmanager.free(ret);
         mmanager.free(num1);
         mmanager.free(num2);
         
         
+        
+        //For Allocation Method
+        int temp1 = mmanager.malloc(3);
+        int temp2 = mmanager.malloc(3);
+        int temp3 = mmanager.malloc(3);
+        int temp4 = mmanager.malloc(3);
+        int temp5 = mmanager.malloc(3);
+        int temp6 = mmanager.malloc(3);
+        mmanager.free(temp2);
+        mmanager.free(temp3);
+        mmanager.free(temp5);
+        int checkmem = mmanager.malloc(3);
+        mmanager.printMemory();
+        
+        
+        
+        
+    }
+    
+    void testRecusion() {
         System.out.println("\nFactorial of 5");
         int output3 = (int)  new Factorial(new Object[]{5}).getResult();
         System.out.println("\t5! = "+(output3));
-        
-        
         
     }
     

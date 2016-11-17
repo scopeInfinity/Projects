@@ -2,8 +2,14 @@ package memorymanager;
 
 public class MemoryManager {
     private final boolean doAssertion = true;
+    private static final int SIZE = 40;//1024*1024*20;
+    private final int allocationMethod = FIRST_FIT;
     
-    private static final int SIZE = 20;//1024*1024*20;
+    
+    public static final int FIRST_FIT   = 0;
+    public static final int BEST_FIT    = 1;
+    public static final int WORSE_FIT   = 2;
+    
     private final int RAW[];
     private final boolean ASSERT_HEAP[];
     
@@ -145,7 +151,7 @@ public class MemoryManager {
         if(address - 1 == previousFreeBlockLast) {
             //Continous
             RAW[pointer2fp-1]+=RAW[address - 1];
-            RAW[pointer2fp] = freepointer;
+            RAW[pointer2fp] = RAW[address];
         }
     }
     
@@ -155,57 +161,120 @@ public class MemoryManager {
      * @return pointerOfFreeMemory
      */
     public int malloc(int amount) {
-        
         //Need 1 more for storing size than required
         amount++;
         
         //We allocate in multiple of 4
         int pointer2fp = 0;
         int freepointer = RAW[0];
-        while(freepointer!=-1 ||
-                !(freepointer+1<getMaxHeapPossible()
-                    && RAW[freepointer+1]+freepointer>getMaxHeapPossible())) {
-            int canallocate = RAW[freepointer];
-            //BEST FIT
-            if(canallocate>=amount) {
-                int remaining = canallocate-amount;
-                
-                //We wont leave just 4 byte in heap free,
-                //We need 8byte min.. if they are free
-                if(remaining==1)
-                {
-                    amount++;
-                    remaining = 0;
-                }
-                RAW[freepointer] = amount;
-                int nextfreeword;
-                if (remaining == 0)
-                    nextfreeword = RAW[freepointer+1];
-                else
-                {
-                    nextfreeword = freepointer+amount;
-                    RAW[nextfreeword] = canallocate-amount;
-                    RAW[nextfreeword+1] = RAW[freepointer+1];
-                }
-                
-                //For Assertion
-                if(doAssertion)
-                for (int i = 0;i<amount - 1;i++) {
-                    if(ASSERT_HEAP[freepointer + i +1]) {
-                        printMemory();
-                        throw new InvalidMemoryExcpetion("Memory Manager Fault : Already Allocated");
+        
+        //For BEST FIT and WORSE_FIT count of free block number to be used
+        int algospecific_count = 0;
+        int algospecific_block_number = -1;
+        int algospecific_var = 0;
+        if(allocationMethod == BEST_FIT)
+            algospecific_var = SIZE;
+        else
+            algospecific_var = 0;
+        
+        if(allocationMethod == BEST_FIT || allocationMethod == WORSE_FIT) {
+            System.err.println();
+            while(freepointer!=-1 &&
+                (freepointer+1<getMaxHeapPossible()
+                    && RAW[freepointer+1]+2<=getMaxHeapPossible())) {
+                int canallocate = RAW[freepointer];
+                if((canallocate>=amount)) {
+                    int remaining = canallocate-amount;
+                    if(remaining == 1) 
+                        remaining = 0;
+                    if(allocationMethod == BEST_FIT) {
+                        if(algospecific_var > remaining) {
+                            algospecific_var = remaining;
+                            algospecific_block_number = algospecific_count;
+                        }
+                    } else {
+                        //WORSE FIT
+                        if(algospecific_var < remaining) {
+                            algospecific_var = remaining;
+                            algospecific_block_number = algospecific_count;
+                        }
                     }
-                    ASSERT_HEAP[freepointer + i + 1] = true;
+                    
                 }
                 
-                RAW[pointer2fp] = nextfreeword;
-                return freepointer + 1;
                 
+                algospecific_count++;
+                pointer2fp = freepointer + 1;
+                freepointer = RAW[freepointer + 1];
+                System.err.println("> "+canallocate+" "+freepointer);
                 
             }
+        
+            System.err.println("+++" + algospecific_block_number);
+            //printMemory();
+            if(algospecific_block_number == -1)
+                throw new InsufficentMemoryExpection("Heap");
+        }
+        
+        int counter = 0;
+        pointer2fp = 0;
+        freepointer = RAW[0];
+        while(freepointer!=-1 &&
+               (freepointer+1<getMaxHeapPossible()
+                    && RAW[freepointer+1]+2<=getMaxHeapPossible())) {
+            int canallocate = RAW[freepointer];
             
-            pointer2fp = freepointer + 1;
-            freepointer = RAW[freepointer + 1];
+            boolean gotoNextBlock = false;
+            if(allocationMethod == FIRST_FIT) {
+                //FIRST FIT
+                if(!(canallocate>=amount))
+                    gotoNextBlock = true;
+            } else {
+                //BEST FIT & WORSE FIT
+                if(counter != algospecific_block_number)
+                    gotoNextBlock = true;
+            }
+            
+            if(gotoNextBlock) {
+                pointer2fp = freepointer + 1;
+                freepointer = RAW[freepointer + 1];
+                counter++;
+                continue;
+            }
+            
+            
+            int remaining = canallocate-amount;
+
+            //We wont leave just 4 byte in heap free,
+            //We need 8byte min.. if they are free
+            if(remaining==1)
+            {
+                amount++;
+                remaining = 0;
+            }
+            RAW[freepointer] = amount;
+            int nextfreeword;
+            if (remaining == 0)
+                nextfreeword = RAW[freepointer+1];
+            else
+            {
+                nextfreeword = freepointer+amount;
+                RAW[nextfreeword] = canallocate-amount;
+                RAW[nextfreeword+1] = RAW[freepointer+1];
+            }
+
+            //For Assertion
+            if(doAssertion)
+            for (int i = 0;i<amount - 1;i++) {
+                if(ASSERT_HEAP[freepointer + i +1]) {
+                    printMemory();
+                    throw new InvalidMemoryExcpetion("Memory Manager Fault : Already Allocated");
+                }
+                ASSERT_HEAP[freepointer + i + 1] = true;
+            }
+
+            RAW[pointer2fp] = nextfreeword;
+            return freepointer + 1;
         }
         
         throw new InsufficentMemoryExpection("Heap");
