@@ -9,13 +9,19 @@
    
    Divvy Client Spreaded Over Intranet having a intranet IP, finds other DivvyClient shares website content which it contains with other,  leading to spread of latest data all over intranet. Those HTML website uploaded from any user availabe to everyone even if few of client is down/off/terminated.
    
-   
-*  __REAC (RemoteAccess)__ 
+*  [__REAC (RemoteAccess)__](https://github.com/RemoteAccess)
    A software meant for accessing your laptop with limited permission(as specified) by another user with a given password over Intranet.
 
    It mainly means to modify or access files over remote location in intranet.
 
    Also, it can be used in daily basis for controlling your laptop from android application which provides quick features like Sharing, Logging, Blocking, and even Lock your laptop even if you far away physically. 
+
+* [__ChitChat__](https://github.com/scopeInfinity/ChitChat)
+   _P2P Chat with Centralized Authentication (Video/Audio Call support)_
+
+   Peers are able to authorize using centralized server and later on they are able to chat with them over P2P network.
+   
+   Audio and Video Calls are also supported.
 
 *  __iTalk__
    An Android Application with PHP Server for Chatting with custom profile.
