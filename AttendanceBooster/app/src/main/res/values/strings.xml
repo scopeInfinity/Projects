@@ -1,0 +1,18 @@
+<resources>
+    <string name="app_name">AttendanceBooster</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
+    <string name="title_activity_information">Details</string>
+    <string name="title_activity_introduction">Introduction</string>
+    <string name="introduction_string">
+        No problem For less than 75% attendance..
+        Record Your Daily Performance..
+        Now a test long ................................................................................. sentence.
+
+    </string>
+    <string name="title_activity_time_table">Schedule</string>
+    <string name="title_activity_ctt">Change TT</string>
+    <string name="title_activity_couse_activity">couse_activity</string>
+    <string name="title_activity_acti_couse_tt">actiCouseTT</string>
+    <string name="title_activity_calc_attendance">Statitics</string>
+</resources>

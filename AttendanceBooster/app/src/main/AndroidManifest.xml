@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.example.gagan.attendancebooster" >
+
+    <uses-sdk
+        android:minSdkVersion="11"
+        android:targetSdkVersion="21" />
+
+    <android:uses-permission
+        android:name="android.permission.WRITE_EXTERNAL_STORAGE"
+        android:maxSdkVersion="18" />
+    <android:uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <android:uses-permission
+        android:name="android.permission.READ_EXTERNAL_STORAGE"
+        android:maxSdkVersion="18" />
+
+    <application
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:theme="@style/AppTheme" >
+        <activity
+            android:name=".MainActivity"
+            android:label="@string/app_name" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".Information"
+            android:label="@string/title_activity_information" >
+        </activity>
+        <activity
+            android:name=".Introduction"
+            android:label="@string/title_activity_introduction" >
+        </activity>
+        <activity
+            android:name=".time_table"
+            android:label="@string/title_activity_time_table" >
+        </activity>
+        <activity
+            android:name=".course_activity"
+            android:label="@string/title_activity_couse_activity" >
+        </activity>
+        <activity
+            android:name=".actiCouseTT"
+            android:label="@string/title_activity_acti_couse_tt" >
+        </activity>
+        <activity
+            android:name=".calcAttendance"
+            android:label="@string/title_activity_calc_attendance" >
+        </activity>
+    </application>
+
+</manifest>

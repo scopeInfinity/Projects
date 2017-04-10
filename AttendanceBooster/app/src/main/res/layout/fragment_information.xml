@@ -1,0 +1,198 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+    android:layout_height="match_parent" android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    android:orientation="vertical"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    tools:context="com.example.gagan.attendancebooster.Information$PlaceholderFragment">
+
+<ScrollView
+    android:layout_weight="1"
+
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+    <EditText
+        android:hint="Name"
+        android:id="@+id/et_info_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:inputType="textCapWords|textPersonName|textCapCharacters" />
+
+        <TextView
+        android:text="Semester Starting Date"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <EditText
+            android:layout_weight="1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="01/01/1994"
+            android:id="@+id/et_date_sem_start"/>
+        <Button
+            android:text="Pick"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:onClick="show_date_pick"
+            android:id="@+id/bt_date_sem_start"/>
+    </LinearLayout>
+
+        <TextView
+        android:text="Semester Ending Date"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <EditText
+            android:layout_weight="1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="01/01/1994"
+            android:id="@+id/et_date_sem_end"/>
+        <Button
+            android:text="Pick"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:onClick="show_date_pick"
+            android:id="@+id/bt_date_sem_end"/>
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:orientation="horizontal"
+        android:layout_height="wrap_content">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+            android:textSize="20dp"
+            android:text="Minimum Attendance"/>
+    <EditText
+        android:layout_weight="1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textAlignment="center"
+        android:text="75"
+        android:layout_marginLeft="10dp"
+        android:inputType="number" />
+
+    </LinearLayout>
+
+    <!--      HIDDEN                     -->
+    <LinearLayout
+        android:layout_width="0dp"
+        android:orientation="vertical"
+        android:layout_height="0dp">
+
+
+
+
+     <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="25dp"
+        android:text="Lecture Days"/>
+    <TableLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+    <TableRow
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <TextView   android:text="Sun" android:layout_width="wrap_content"  android:layout_height="wrap_content" android:layout_weight="1"/>
+        <TextView   android:text="Mon" android:layout_width="wrap_content"  android:layout_height="wrap_content" android:layout_weight="1"/>
+        <TextView   android:text="Tue" android:layout_width="wrap_content"  android:layout_height="wrap_content" android:layout_weight="1"/>
+        <TextView   android:text="Wed" android:layout_width="wrap_content"  android:layout_height="wrap_content" android:layout_weight="1"/>
+        <TextView   android:text="Thu" android:layout_width="wrap_content"  android:layout_height="wrap_content" android:layout_weight="1"/>
+        <TextView   android:text="Fri" android:layout_width="wrap_content"  android:layout_height="wrap_content" android:layout_weight="1"/>
+        <TextView   android:text="Sat" android:layout_width="wrap_content"  android:layout_height="wrap_content" android:layout_weight="1"/>
+
+    </TableRow>
+    <TableRow >
+        <ImageView android:id="@+id/id_nS_0" android:layout_margin="3dp"
+            android:background="@drawable/img_tick_n" android:layout_width="match_parent"    android:layout_height="45dp" android:layout_weight="1"/>
+        <ImageView android:id="@+id/id_nS_1" android:layout_margin="3dp" android:scaleType="fitXY"
+            android:background="@drawable/img_tick_y" android:layout_width="match_parent"    android:layout_height="match_parent" android:layout_weight="1"/>
+        <ImageView android:id="@+id/id_nS_2" android:layout_margin="3dp" android:scaleType="fitXY"
+            android:background="@drawable/img_tick_y" android:layout_width="match_parent"    android:layout_height="match_parent" android:layout_weight="1"/>
+        <ImageView android:id="@+id/id_nS_3" android:layout_margin="3dp" android:scaleType="fitXY"
+            android:background="@drawable/img_tick_y" android:layout_width="match_parent"    android:layout_height="match_parent" android:layout_weight="1"/>
+        <ImageView android:id="@+id/id_nS_4" android:layout_margin="3dp" android:scaleType="fitXY"
+            android:background="@drawable/img_tick_y" android:layout_width="match_parent"    android:layout_height="match_parent" android:layout_weight="1"/>
+        <ImageView android:id="@+id/id_nS_5" android:layout_margin="3dp" android:scaleType="fitXY"
+            android:background="@drawable/img_tick_y" android:layout_width="match_parent"    android:layout_height="match_parent" android:layout_weight="1"/>
+        <ImageView android:id="@+id/id_nS_6" android:layout_margin="3dp" android:scaleType="fitXY"
+            android:background="@drawable/img_tick_n" android:layout_width="match_parent"    android:layout_height="match_parent" android:layout_weight="1"/>
+
+
+
+
+
+
+
+
+    </TableRow>
+        <TableRow>
+            <TextView      android:text="0"     android:id="@+id/id_noL0" android:layout_weight="1"   />
+            <TextView      android:text="0"     android:id="@+id/id_noL1"  android:layout_weight="1"/>
+            <TextView      android:text="0"     android:id="@+id/id_noL2" android:layout_weight="1" />
+            <TextView      android:text="0"     android:id="@+id/id_noL3" android:layout_weight="1"  />
+            <TextView      android:text="0"     android:id="@+id/id_noL4" android:layout_weight="1" />
+            <TextView      android:text="0"     android:id="@+id/id_noL5" android:layout_weight="1" />
+            <TextView      android:text="0"     android:id="@+id/id_noL6" android:layout_weight="1" />
+        </TableRow>
+        <TableRow>
+            <ImageView android:background="@drawable/img_edit_list" android:id="@+id/id_b_noL0" android:onClick="edit_iv_data_lecuture" android:layout_weight="1" android:layout_marginRight="10dp" android:layout_width="match_parent" android:layout_height="50dp"  />
+            <ImageView android:background="@drawable/img_edit_list" android:id="@+id/id_b_noL1" android:onClick="edit_iv_data_lecuture" android:layout_weight="1" android:layout_marginRight="10dp" android:layout_width="match_parent" android:layout_height="match_parent"  />
+            <ImageView android:background="@drawable/img_edit_list" android:id="@+id/id_b_noL2" android:onClick="edit_iv_data_lecuture" android:layout_weight="1" android:layout_marginRight="10dp" android:layout_width="match_parent" android:layout_height="match_parent"  />
+            <ImageView android:background="@drawable/img_edit_list" android:id="@+id/id_b_noL3" android:onClick="edit_iv_data_lecuture" android:layout_weight="1" android:layout_marginRight="10dp" android:layout_width="match_parent" android:layout_height="match_parent"  />
+            <ImageView android:background="@drawable/img_edit_list" android:id="@+id/id_b_noL4" android:onClick="edit_iv_data_lecuture" android:layout_weight="1" android:layout_marginRight="10dp" android:layout_width="match_parent" android:layout_height="match_parent"  />
+            <ImageView android:background="@drawable/img_edit_list" android:id="@+id/id_b_noL5" android:onClick="edit_iv_data_lecuture" android:layout_weight="1" android:layout_marginRight="10dp" android:layout_width="match_parent" android:layout_height="match_parent"  />
+            <ImageView android:background="@drawable/img_edit_list" android:id="@+id/id_b_noL6" android:onClick="edit_iv_data_lecuture" android:layout_weight="1" android:layout_marginRight="10dp" android:layout_width="match_parent" android:layout_height="match_parent"  />
+
+        </TableRow>
+    </TableLayout>
+
+
+
+
+    </LinearLayout>
+        <!---       HIDDEN           -->
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Subject/Courses"
+            android:textSize="25dp"/>
+        <LinearLayout android:id="@+id/id_info_course_list"
+            android:layout_width="match_parent"
+            android:orientation="vertical"
+            android:layout_height="wrap_content"/>
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/id_info_couse_add"
+            android:text="  ADD  "/>
+    </LinearLayout>
+
+</ScrollView>
+    <Button
+        android:id="@+id/id_intro_done"
+        android:layout_width="match_parent"
+        android:text="Save &amp; Manage TT"
+
+        android:onClick="save_setting"
+        android:layout_height="wrap_content" />
+
+
+</LinearLayout>
