@@ -37,6 +37,9 @@
 *  __ChatBox__
    GUI based Realtime-Chat using Sockets
 
+*  __DES Variant Implementation__
+   64bit encryption with 64bit key using 32bit round keys
+
 *  __BooleanSimplifier__
     Implementation of Simplification of Boolean Application with QMap
 
