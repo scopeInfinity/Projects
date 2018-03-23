@@ -28,6 +28,13 @@
 
    It focuses on user privacy that, admin __must not__ be able to interpret any chat content even if he has collection of all kind of data with him.
 
+*  [__Inter Buny__](https://github.com/scopeInfinity/InterBunny)
+   Intranet through Internet
+
+   It's a simple HTTP tunneler, allowing you to access simple HTTP site of intranet from outside the range i.e. through the public Internet.
+ 
+   Simple PHP Server with public IP can be used as proxy server allowing basic operations like file IO.
+
 *  __MemoryManager__
    Simulating use of Stack and Heap memory for basic operation of function calling.
 
