@@ -9,7 +9,11 @@
    
    Divvy Client Spreaded Over Intranet having a intranet IP, finds other DivvyClient shares website content which it contains with other,  leading to spread of latest data all over intranet. Those HTML website uploaded from any user availabe to everyone even if few of client is down/off/terminated.
    
-*  [__REAC (RemoteAccess)__](https://github.com/RemoteAccess)
+*  [__Anwesha 2k17__](https://github.com/anweshaiitp/anwesha) __```Team```__
+
+   Website for Anwesha 2017 IIT Patna Techno-Cultural-Management Fest
+
+*  [__REAC (RemoteAccess)__](https://github.com/RemoteAccess) __```Team```__
    A software meant for accessing your laptop with limited permission(as specified) by another user with a given password over Intranet.
 
    It mainly means to modify or access files over remote location in intranet.
@@ -89,7 +93,7 @@
 *  __Attendance Booster__
    An Android App for giving attendance log and tips
 
-*  __Image Processing : Mimimum Cost Path__
+*  __Image Processing : Mimimum Cost Path__ __```Team```__
    For Robotics Competition, find minimum Cost path from an image.
 
 *  __Gnetra FileTrasfer__
