@@ -4,7 +4,22 @@ import random
 import numpy as np
 
 DES_ROUNDS = 16
-
+permutation_bitlocation = [
+		14,17,11,24, 1, 5, 3,28,
+		15, 6,21,10,23,19,12, 4,
+		26, 8,16, 7,27,20,13, 2,
+		40,52,31,37,47,55,30,40,
+		51,45,33,48,44,49,39,56,
+		34,53,46,42,50,36,29,32
+	]
+d_pemutation = [
+	17,28,12,29,21,20, 7,16,
+	 1,15,23,26, 5,18,31,10,
+	25, 4,11,22, 6,30,13,19,
+	 2, 8,24,14,32,27, 3, 9
+]
+s_table = [0xE,0x4,0xD,0x1,0x2,0xF,0xB,0x8,0x3,0xA,0x6,0xC,0x5,0x9,0x0,0x7]
+	
 def rotatebitleft(b,cnt,bitlength):
 	r = ((b<<cnt) | (b>>(bitlength-cnt))) & ((1<<bitlength)-1)
 	return r
@@ -20,19 +35,11 @@ def pbox(permutation,_in):
 # Key scheduler compression pbox
 # 56bits to 48bits then truncate to 32 bits
 def ks_compression_pbox(_in):
-	permutation_bitlocation = [
-			14,17,11,24, 1, 5, 3,28,
-			15, 6,21,10,23,19,12, 4,
-			26, 8,16, 7,27,20,13, 2,
-			40,52,31,37,47,55,30,40,
-			51,45,33,48,44,49,39,56,
-			34,53,46,42,50,36,29,32
-		]
 	out_48 = pbox(permutation_bitlocation, _in)
 	out_32 = out_48&((1<<32)-1)
 	return out_32
 
-def key_scheduler(key):
+def key_scheduler(key, rounds):
 	# Assuming msb 8 bit to be parity bit
 	# Ignoring high 8 parity bits
 	cipherkey = key&((1<<56)-1)
@@ -42,7 +49,7 @@ def key_scheduler(key):
 	ck_l = cipherkey>>CK_HALFSIZE
 	ck_r = cipherkey&((1<<CK_HALFSIZE)-1)
 	keys = []
-	for r in range(DES_ROUNDS):
+	for r in range(rounds):
 		shamt = 2
 		if r in onebitshiftround:
 			shamt = 1
@@ -64,14 +71,6 @@ def sboxs(table, _in, splitinto):
 	return _out
 
 def des_round(data_l,data_r,rkey):
-	d_pemutation = [
-		17,28,12,29,21,20, 7,16,
-		 1,15,23,26, 5,18,31,10,
-		25, 4,11,22, 6,30,13,19,
-		 2, 8,24,14,32,27, 3, 9
-	]
-	s_table = [0xE,0x4,0xD,0x1,0x2,0xF,0xB,0x8,0x3,0xA,0x6,0xC,0x5,0x9,0x0,0x7]
-	
 	x_out = data_r^rkey
 	s_out = sboxs(s_table, x_out, 8)
 	out_p = pbox(d_pemutation, s_out)
@@ -88,8 +87,8 @@ def des(data,round_keys):
 	cipher = (data_l<<DA_HALFSIZE) | data_r
 	return cipher
 
-def encrypt(data,key):
-	round_keys = key_scheduler(key)
+def encrypt(data,key, rounds = DES_ROUNDS):
+	round_keys = key_scheduler(key, rounds)
 	cipher = des(data, round_keys)
 	return cipher
 
