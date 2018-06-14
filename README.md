@@ -14,7 +14,7 @@
    
    Divvy Client Spreaded Over Intranet having a intranet IP, finds other DivvyClient shares website content which it contains with other,  leading to spread of latest data all over intranet. Those HTML website uploaded from any user availabe to everyone even if few of client is down/off/terminated.
 
-* [__DeepVoiceController__](https://github.com/scopeInfinity/DeepVoiceController)
+* [__DeepVoiceController__](https://github.com/scopeInfinity/DeepVoiceController) __```Team```__
 
   Marvin is an application to control linux OS using voice commands.
   
